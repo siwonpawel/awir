@@ -50,7 +50,7 @@ public class UserController
 
     @PostMapping("/add")
     public String addUserFormPost(
-            @RequestParam MultipartFile file,
+            @RequestParam(required = false) MultipartFile file,
             @ModelAttribute @Valid User user,
             BindingResult bindingResult,
             Model model) throws IOException
@@ -83,7 +83,7 @@ public class UserController
     }
 
     @PostMapping("/{id}/edit")
-    public String editUserFormPost(@ModelAttribute @Valid User user, Model model, @RequestParam MultipartFile file, BindingResult bindingResult) throws Exception
+    public String editUserFormPost(@ModelAttribute @Valid User user, Model model, @RequestParam(required = false) MultipartFile file, BindingResult bindingResult) throws Exception
     {
         user = userService.save(user, file);
         model.addAttribute("user", user);

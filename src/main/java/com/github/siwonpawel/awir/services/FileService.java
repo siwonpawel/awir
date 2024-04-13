@@ -1,8 +1,6 @@
 package com.github.siwonpawel.awir.services;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -36,6 +34,11 @@ public class FileService
 
     public void store(MultipartFile file)
     {
+        if (file == null || file.isEmpty())
+        {
+            return;
+        }
+
         try
         {
             Path destinationPath = uploadFolder.resolve(Objects.requireNonNull(file.getOriginalFilename()));
@@ -55,7 +58,7 @@ public class FileService
         {
             Files.delete(Paths.get(filePath));
         }
-        catch (IOException exception)
+        catch (Exception exception)
         {
             log.error("Error deleting file {}", filePath, exception);
         }

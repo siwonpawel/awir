@@ -24,7 +24,19 @@ public class UserService
 
     public User save(User user, MultipartFile file) throws IOException
     {
-        fileService.store(file);
+        if (file != null)
+        {
+            fileService.store(file);
+        }
+        else
+        {
+            var orgImage = userRepository.findById(user.getId())
+                    .map(User::getImage)
+                    .orElse(null);
+
+            user.setImage(orgImage);
+        }
+
         return userRepository.save(user);
     }
 
