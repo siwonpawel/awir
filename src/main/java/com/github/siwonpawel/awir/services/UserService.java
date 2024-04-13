@@ -22,7 +22,7 @@ public class UserService
         return userRepository.findAllByOrderById();
     }
 
-    public User save(User user, MultipartFile file) throws IOException
+    public User save(User user, MultipartFile file)
     {
         if (file != null)
         {
