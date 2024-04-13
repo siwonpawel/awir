@@ -1,0 +1,26 @@
+<form layout:fragment="edit-user-form"
+      action="#"
+      th:action="@{/users/{id}/edit(id=${user.id})}"
+      th:object="${user}"
+      method="post">
+
+    <h1 class="h3 mb-3 fw-normal" th:text="#{form.update}">Register</h1>
+
+    <div class="form-floating">
+        <input type="text" th:field="*{id}" class="form-control" id="floatingId" disabled placeholder="1" value="${user.id}">
+        <label for="floatingId">ID</label>
+    </div>
+
+    <div class="form-floating">
+        <input type="text" th:field="*{name}" class="form-control" id="floatingName" placeholder="John Smith" value="${user.name}">
+        <label for="floatingName">Name</label>
+    </div>
+
+    <div class="form-floating">
+        <input type="email" th:field="*{email}" class="form-control" id="floatingEmail" placeholder="johnsmith@gmail.com" value="${user.email}">
+        <label for="floatingEmail">Email</label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+    <button class="w-100 btn btn-lg btn-warning" type="reset">Reset</button>
+</form>

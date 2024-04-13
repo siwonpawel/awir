@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main}">
+<body>
+
+<div layout:fragment="content">
+    <form action="#" th:action="@{/users/add}" th:object="${user}" method="post" enctype="multipart/form-data">
+
+        <h1 class="h3 mb-3 fw-normal" th:text="#{form.register}">Register</h1>
+
+        <p class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"/>
+        <p class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"/>
+
+
+
+        <div class="form-floating">
+            <input type="text" th:field="*{name}" class="form-control" id="floatingName" placeholder="John Smith">
+            <label for="floatingName">Name</label>
+        </div>
+
+        <div class="form-floating">
+            <input type="email" th:field="*{email}" class="form-control" id="floatingEmail" placeholder="johnsmith@gmail.com">
+            <label for="floatingEmail">Email</label>
+        </div>
+
+        <input type="file" name="file"/>
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+        <button class="w-100 btn btn-lg btn-warning" type="reset">Reset</button>
+    </form>
+</div>
+
+<th:block layout:fragment="script-content"></th:block>
+</body>
+</html>

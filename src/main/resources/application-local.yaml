@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    username: awir
+    password: secret
+    url: jdbc::mysql://localhost:3306/awir
+  thymeleaf:
+    cache: false
+  web:
+    resources:
+      chain:
+        cache: false
+  jpa:
+    generate-ddl: true
+

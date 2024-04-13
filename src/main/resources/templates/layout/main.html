@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html th:lang="|${#locale.language}-${#locale.country}|"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" th:href="@{/css/application.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="#" th:href="@{/users}" class="navbar-brand" th:text="#{nav.title}">Title</a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="#" th:href="@{/users}" class="nav-link px-2 text-secondary" th:text="#{nav.users}">Home</a></li>
+                <li><a href="#" th:href="@{/users/add}" class="nav-link px-2 text-secondary" th:text="#{nav.addUser}">Features</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <main layout:fragment="content"></main>
+</div>
+
+<script type="text/javascript" th:src="@{/webjars/alpinejs/dist/cdn.min.js}"></script>
+<script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/htmx.org/dist/htmx.min.js}"></script>
+
+<th:block layout:fragment="script-content"></th:block>
+</body>
+</html>
