@@ -10,6 +10,10 @@
         <label>Name</label><p th:text="${user.id}">1</p>
         <label>Name</label><p th:text="${user.name}">John Smith</p>
         <label>Email</label><p th:text="${user.email}">john.smith@gmail.com</p>
+
+        <img th:if="${image != null}" th:src="@{'data:image/png;base64,'+${image}}"
+             src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.ty4h_2HJDoC9LKBtB8zlOQHaE8%26pid%3DApi&f=1&ipt=950f4c76ad434ac2a1b8aba7de3269fe11fa30ad500e7b9b2702b2d7c9e511ad&ipo=images" style="max-height: 250px; max-width: 250px;"
+             alt="Zdjęcie użytkownika"/>
         <button th:attr="hx-get=@{/users/{id}/edit(id=${user.id})}" class="btn btn-primary">
             Click to edit
         </button>

@@ -1,12 +1,12 @@
 package com.github.siwonpawel.awir.controllers;
 
-import java.awt.image.ImagingOpException;
 import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Base64Utils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -71,7 +71,12 @@ public class UserController
     @GetMapping("/{id}")
     public String addUserFormPost(@PathVariable Long id, Model model)
     {
-        model.addAttribute("user", userService.getById(id));
+        User user = userService.getById(id);
+        model.addAttribute("user", user);
+        if (user.getImage() != null)
+        {
+            model.addAttribute("image", Base64Utils.encodeToString(user.getImage()));
+        }
         return "user-details";
     }
 
