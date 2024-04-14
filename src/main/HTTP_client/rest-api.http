@@ -1,0 +1,65 @@
+POST {{baseUrl}}/users
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Jan Nowak",
+    "email": "jannowak@gmail.com"
+}
+
+> {%
+    client.global.set("id", response.body.id);
+%}
+
+<> 2024-04-14T133807.200.json
+<> 2024-04-14T133801.200.json
+
+###
+
+PUT {{baseUrl}}/users/{{id}}
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Jan Zmieniony",
+    "email": "jannowak@gmail.com"
+}
+
+
+###
+
+POST {{baseUrl}}/users
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Pawel S",
+    "email": "siwonpawel@gmail.com"
+}
+
+<> 2024-04-14T133809.200.json
+
+####
+
+GET {{baseUrl}}/users
+
+<> 2024-04-14T133846.200.json
+<> 2024-04-14T133812.200.json
+
+####
+
+GET {{baseUrl}}/users?name=Pawel S
+
+<> 2024-04-14T133817.200.json
+
+####
+
+DELETE {{baseUrl}}/users?name=Pawel S
+
+###
+
+GET {{baseUrl}}/users
+
+<> 2024-04-14T133830.200.json
+
+###

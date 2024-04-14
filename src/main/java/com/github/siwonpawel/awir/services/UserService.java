@@ -1,6 +1,5 @@
 package com.github.siwonpawel.awir.services;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -8,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.github.siwonpawel.awir.domain.User;
 import com.github.siwonpawel.awir.repositories.UserRepository;
+import com.github.siwonpawel.awir.services.exceptions.EntityNotExistingException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -24,11 +24,11 @@ public class UserService
 
     public User save(User user, MultipartFile file)
     {
-        if (file != null)
+        if (file != null && !file.isEmpty())
         {
             fileService.store(file);
         }
-        else
+        else if (user.getImage() != null)
         {
             var orgImage = userRepository.findById(user.getId())
                     .map(User::getImage)
@@ -51,5 +51,25 @@ public class UserService
     public User getById(Long id)
     {
         return userRepository.getReferenceById(id);
+    }
+
+    public List<User> findByName(String name)
+    {
+        return userRepository.findByName(name);
+    }
+
+    public void deleteByName(String name)
+    {
+        userRepository.deleteByName(name);
+    }
+
+    public User modifyUser(Long id, User user)
+    {
+        if (!userRepository.existsById(id))
+        {
+            throw new EntityNotExistingException(user.getId());
+        }
+
+        return userRepository.save(user);
     }
 }

@@ -11,4 +11,5 @@ spring:
         cache: false
   jpa:
     generate-ddl: true
-
+    hibernate:
+      ddl-auto: create-drop
