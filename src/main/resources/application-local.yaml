@@ -13,3 +13,11 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: create-drop
+
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: a6b1e84b668085ff3f50
+            client-secret: 54252e3ead995c70ad8240f75a9a6084bc1be024
