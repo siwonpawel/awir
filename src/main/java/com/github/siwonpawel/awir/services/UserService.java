@@ -72,4 +72,9 @@ public class UserService
 
         return userRepository.save(user);
     }
+
+    public List<User> findUserByName(String name)
+    {
+        return userRepository.findByName(name);
+    }
 }

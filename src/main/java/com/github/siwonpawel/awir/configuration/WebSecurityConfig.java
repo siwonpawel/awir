@@ -36,7 +36,7 @@ public class WebSecurityConfig //implements WebSecurityCustomizer
         return httpSecurity
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/api/**").permitAll())
+                                .requestMatchers("/api/**", "/ws/**").permitAll())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requests ->
                         requests
