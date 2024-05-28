@@ -9,6 +9,11 @@ spring:
     resources:
       chain:
         cache: false
+  mail:
+    host: localhost
+    port: 1025
+    username: user
+    password: pass
   jpa:
     generate-ddl: true
     hibernate:

@@ -43,7 +43,7 @@ public class WebSecurityConfig //implements WebSecurityCustomizer
                                 .requestMatchers("/").permitAll()
                                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
-                .oauth2Login(Customizer.withDefaults())
+                //                .oauth2Login(Customizer.withDefaults())
                 .logout(LogoutConfigurer::permitAll)
                 .build();
     }

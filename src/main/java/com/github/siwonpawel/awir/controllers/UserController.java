@@ -1,7 +1,5 @@
 package com.github.siwonpawel.awir.controllers;
 
-import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.github.siwonpawel.awir.domain.User;
+import com.github.siwonpawel.awir.services.MailService;
 import com.github.siwonpawel.awir.services.UserService;
 import groovy.util.logging.Slf4j;
 import jakarta.validation.Valid;
@@ -32,6 +31,7 @@ public class UserController
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
     private final UserService userService;
+    private final MailService mailService;
 
     @GetMapping("")
     public String listUsers(Model model)
@@ -53,7 +53,7 @@ public class UserController
             @RequestParam(required = false) MultipartFile file,
             @ModelAttribute @Valid User user,
             BindingResult bindingResult,
-            Model model) throws IOException
+            Model model) throws Exception
     {
         if (bindingResult.hasErrors())
         {
@@ -62,6 +62,9 @@ public class UserController
 
         user.setImage(file.getBytes());
         user = userService.save(user, file);
+
+        mailService.sendMail(user, file);
+
 
         log.info("Added user: {}: {}", user.getId(), user.getName());
         model.addAttribute("user", user);
